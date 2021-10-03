@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  server:
+    build:
+      context: .
+    privileged: true
+    ports:
+      - "8080:8080"
+    volumes:
+      - ".:/server"
+    links:
+      - "mosquitto"
+
+
+  clients:
+    image: clients
+    privileged: true
+    ports:
+      - "8081:8081"
+    links:
+      - "mosquitto"
+
+  mosquitto:
+    image: mqtt
+    ports:
+      - "8883:8883"
+      - "1883:1883"
