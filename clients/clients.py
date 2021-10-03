@@ -144,7 +144,7 @@ def on_message_sensord(client, userdata, message):
     print(templateData)
 
 
-
+##connect to local broker
 ledc = mqtt.Client()
 ledc.on_connect = on_connect_led
 ledc.on_message = on_message_led
@@ -166,11 +166,32 @@ sensort.on_message=on_message_sensort
 sensort.connect("mosquitto", 1883, 200)
 sensort.loop_start()
 
-
 ledc.publish("test","sdfgdsdfg")
 
 
-print("yayaya")
+##connect to cloud broker
+could_ledc = mqtt.Client()
+could_ledc.on_connect = on_connect_led
+could_ledc.on_message = on_message_led
+could_ledc.on_subscribe=on_subscribe_led
+could_ledc.connect("broker.hivemq.com", 1883, 200)
+could_ledc.loop_start()
+
+
+cloud_sensord=mqtt.Client()
+cloud_sensord.on_connect=on_connect_sensord
+cloud_sensord.on_publish=on_publish_sensord
+cloud_sensord.on_message=on_message_sensord
+cloud_sensord.connect("broker.hivemq.com", 1883, 200)
+cloud_sensord.loop_start()
+
+cloud_sensort=mqtt.Client()
+cloud_sensort.on_connect=on_connect_sensort
+cloud_sensort.on_message=on_message_sensort
+cloud_sensort.connect("broker.hivemq.com", 1883, 200)
+cloud_sensort.loop_start()
+
+
 while True:
     pass
 
