@@ -82,6 +82,8 @@ def on_message_led(client, userdata, message):
             'led_green': ledState_green,
         }
         client.publish("queen/led/state",json.dumps(ledState))
+        could_ledc.publish("queen/led/state",json.dumps(ledState))
+
     else:
         print(str(message.payload.decode("utf-8")))
 
