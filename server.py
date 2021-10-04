@@ -27,6 +27,16 @@ mqtt.subscribe('queen/distance_store')
 mqtt.subscribe('queen/led/action')
 mqtt.subscribe('queen/led/state')
 
+
+@mqtt.on_disconnect()
+def handle_disconnect(client, userdata, rc):
+    mqtt = Mqtt(app)
+    mqtt.subscribe('queen/dht11_error')
+    mqtt.subscribe('queen/dht11_store')
+    mqtt.subscribe('queen/distance_store')
+    mqtt.subscribe('queen/led/action')
+    mqtt.subscribe('queen/led/state')
+
 @mqtt.on_connect()
 def handle_connect(client, userdata, flags, rc):
     print("client on server connected",flush=True,file=sys.stderr)

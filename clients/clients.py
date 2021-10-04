@@ -29,6 +29,11 @@ GPIO.setup(ECHO, GPIO.IN)
 """
 mqtt functions for server
 """
+def on_disconnect(client, userdata, rc):
+    print("disconnected, but will reconnect")
+    client.reconnect()
+
+
 def on_subscribe_led(client, userdata, mid, granted_qos):
     print("led subscribed")
     print(granted_qos)
@@ -148,6 +153,7 @@ def on_message_sensord(client, userdata, message):
 
 ##connect to local broker
 ledc = mqtt.Client()
+ledc.on_disconnect= on_disconnect
 ledc.on_connect = on_connect_led
 ledc.on_message = on_message_led
 ledc.on_subscribe=on_subscribe_led
@@ -156,6 +162,7 @@ ledc.loop_start()
 
 
 sensord=mqtt.Client()
+sensord.on_disconnect= on_disconnect
 sensord.on_connect=on_connect_sensord
 sensord.on_publish=on_publish_sensord
 sensord.on_message=on_message_sensord
@@ -163,6 +170,7 @@ sensord.connect("mosquitto", 1883, 200)
 sensord.loop_start()
 
 sensort=mqtt.Client()
+sensort.on_disconnect= on_disconnect
 sensort.on_connect=on_connect_sensort
 sensort.on_message=on_message_sensort
 sensort.connect("mosquitto", 1883, 200)
@@ -173,6 +181,7 @@ ledc.publish("test","sdfgdsdfg")
 
 ##connect to cloud broker
 could_ledc = mqtt.Client()
+could_ledc.on_disconnect= on_disconnect
 could_ledc.on_connect = on_connect_led
 could_ledc.on_message = on_message_led
 could_ledc.on_subscribe=on_subscribe_led
@@ -181,6 +190,7 @@ could_ledc.loop_start()
 
 
 cloud_sensord=mqtt.Client()
+cloud_sensord.on_disconnect= on_disconnect
 cloud_sensord.on_connect=on_connect_sensord
 cloud_sensord.on_publish=on_publish_sensord
 cloud_sensord.on_message=on_message_sensord
@@ -188,6 +198,7 @@ cloud_sensord.connect("broker.hivemq.com", 1883, 200)
 cloud_sensord.loop_start()
 
 cloud_sensort=mqtt.Client()
+cloud_sensort.on_disconnect= on_disconnect
 cloud_sensort.on_connect=on_connect_sensort
 cloud_sensort.on_message=on_message_sensort
 cloud_sensort.connect("broker.hivemq.com", 1883, 200)
