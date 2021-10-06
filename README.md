@@ -39,13 +39,6 @@ If you run into error of '<span style="color:red">Fatal Python error: init_inter
  $ sudo apt update
  $ sudo apt install -t buster-backports libseccomp2
 ```
-```
-
-
-
-
-
-....
 
 
 
