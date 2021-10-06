@@ -43,7 +43,10 @@ def on_connect_led(client, userdata, flags, rc):
     print(f"leds connected with result code {rc}")
     client.subscribe("queen/led/action",1)
     client.subscribe("check_led",1)
-    client.subscribe("test",1)
+
+def on_connect_led_cloud(client, userdata, flags, rc):
+    print(f"leds connected with result code {rc}")
+    client.subscribe("check_led", 1)
 
 # when LED receives message of changing states
 def on_message_led(client, userdata, message):
@@ -95,7 +98,7 @@ def on_message_led(client, userdata, message):
 
 def on_connect_sensort(client, userdata, flags, rc):
     print(f"dht11 client Connected with result code {rc}")
-    client.subscribe("queen/dht11_check")
+    client.subscribe("queen/dht11_check",1)
 
 def on_message_sensort(client, userdata, message):
     r_msg=str(message.payload.decode("utf-8"))
@@ -123,7 +126,7 @@ def on_message_sensort(client, userdata, message):
 
 def on_connect_sensord(client, userdata, flags, rc):
     print(f"distance measure client Connected with result code {rc}")
-    client.subscribe("queen/distance_check")
+    client.subscribe("queen/distance_check",1)
 
 def on_publish_sensord(client, userdata, mid):
     print("distance data published")
@@ -157,6 +160,7 @@ ledc = mqtt.Client()
 ledc.on_disconnect= on_disconnect
 ledc.on_connect = on_connect_led
 ledc.on_message = on_message_led
+ledc.username_pw_set("local","shuihouzishuihouzi")
 ledc.on_subscribe=on_subscribe_led
 ledc.connect("mosquitto", 1883, 200)
 ledc.loop_start()
@@ -167,6 +171,7 @@ sensord.on_disconnect= on_disconnect
 sensord.on_connect=on_connect_sensord
 sensord.on_publish=on_publish_sensord
 sensord.on_message=on_message_sensord
+sensord.username_pw_set("local","shuihouzishuihouzi")
 sensord.connect("mosquitto", 1883, 200)
 sensord.loop_start()
 
@@ -174,6 +179,7 @@ sensort=mqtt.Client()
 sensort.on_disconnect= on_disconnect
 sensort.on_connect=on_connect_sensort
 sensort.on_message=on_message_sensort
+sensort.username_pw_set("local","shuihouzishuihouzi")
 sensort.connect("mosquitto", 1883, 200)
 sensort.loop_start()
 
@@ -183,7 +189,7 @@ ledc.publish("test","sdfgdsdfg")
 ##connect to cloud broker
 cloud_ledc = mqtt.Client()
 cloud_ledc.on_disconnect= on_disconnect
-cloud_ledc.on_connect = on_connect_led
+cloud_ledc.on_connect = on_connect_led_cloud
 cloud_ledc.on_message = on_message_led
 cloud_ledc.on_subscribe=on_subscribe_led
 cloud_ledc.username_pw_set("sensor","Nishishabi123")
