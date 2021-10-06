@@ -29,7 +29,7 @@ client.tls_set(tls_version=mqtt.ssl.PROTOCOL_TLS,cert_reqs=ssl.CERT_NONE)
 
 # set username and password
 
-client.username_pw_set("flora", "Pyj@1997")
+client.username_pw_set("sensor", "Nishishabi123")
 
 # connect to HiveMQ Cloud on port 8883
 client.connect("4ff8e85e4274405ab458c0d0e8430b63.s1.eu.hivemq.cloud", 8883)
@@ -38,9 +38,11 @@ client.connect("4ff8e85e4274405ab458c0d0e8430b63.s1.eu.hivemq.cloud", 8883)
 client.subscribe("my/test/topic")
 
 # publish "Hello" to the topic "my/test/topic"
-client.publish("my/test/topic", "Hello")
+
 client.publish("queen/dht11",json.dumps({"msg":"DFDD", "temperature":4588787875, "humidity":123}))
 
 # Blocking call that processes network traffic, dispatches callbacks and handles reconnecting.
 client.loop_start()
-while True: pass
+while True:
+    client.publish("my/test/topic", "Hello")
+    time.sleep(2)
