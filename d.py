@@ -40,7 +40,7 @@ client.subscribe("my/test/topic")
 # publish "Hello" to the topic "my/test/topic"
 
 client.publish("queen/dht11",json.dumps({"msg":"DFDD", "temperature":4588787875, "humidity":123}))
-
+client.publish("queen/distance",json.dumps({"dist":123}))
 # Blocking call that processes network traffic, dispatches callbacks and handles reconnecting.
 client.loop_start()
 while True:

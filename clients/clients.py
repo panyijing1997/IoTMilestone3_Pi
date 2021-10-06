@@ -4,6 +4,7 @@ import RPi.GPIO as GPIO
 import board
 import adafruit_dht
 import time
+import ssl
 import paho.mqtt.client as mqtt
 import socket
 
@@ -186,7 +187,8 @@ cloud_ledc.on_connect = on_connect_led
 cloud_ledc.on_message = on_message_led
 cloud_ledc.on_subscribe=on_subscribe_led
 cloud_ledc.username_pw_set("sensor","Nishishabi123")
-cloud_ledc.connect("4ff8e85e4274405ab458c0d0e8430b63.s1.eu.hivemq.cloud", 1883, 200)
+cloud_ledc.connect("4ff8e85e4274405ab458c0d0e8430b63.s1.eu.hivemq.cloud", 8883, 200)
+cloud_ledc.tls_set(tls_version=mqtt.ssl.PROTOCOL_TLS,cert_reqs=ssl.CERT_NONE)
 cloud_ledc.loop_start()
 
 
@@ -196,7 +198,8 @@ cloud_sensord.on_connect=on_connect_sensord
 cloud_sensord.on_publish=on_publish_sensord
 cloud_sensord.on_message=on_message_sensord
 cloud_sensord.username_pw_set("sensor","Nishishabi123")
-cloud_sensord.connect("4ff8e85e4274405ab458c0d0e8430b63.s1.eu.hivemq.cloud", 1883, 200)
+cloud_sensord.tls_set(tls_version=mqtt.ssl.PROTOCOL_TLS,cert_reqs=ssl.CERT_NONE)
+cloud_sensord.connect("4ff8e85e4274405ab458c0d0e8430b63.s1.eu.hivemq.cloud", 8883, 200)
 cloud_sensord.loop_start()
 
 cloud_sensort=mqtt.Client()
@@ -204,7 +207,8 @@ cloud_sensort.on_disconnect= on_disconnect
 cloud_sensort.on_connect=on_connect_sensort
 cloud_sensort.on_message=on_message_sensort
 cloud_sensort.username_pw_set("sensor","Nishishabi123")
-cloud_sensort.connect("4ff8e85e4274405ab458c0d0e8430b63.s1.eu.hivemq.cloud", 1883, 200)
+cloud_sensort.tls_set(tls_version=mqtt.ssl.PROTOCOL_TLS,cert_reqs=ssl.CERT_NONE)
+cloud_sensort.connect("4ff8e85e4274405ab458c0d0e8430b63.s1.eu.hivemq.cloud", 8883, 200)
 cloud_sensort.loop_start()
 
 
