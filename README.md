@@ -9,7 +9,7 @@ These codes should run on raspberry Pi locally
 ```
 ### 2. Build the docker image for the broker
 ```shell
- $ cd IoTMilestone2_mos
+ $ cd IoTMilestone3_Pi
  $ cd mqtt
  $ docker build -t mqtt .
  $ cd ..
