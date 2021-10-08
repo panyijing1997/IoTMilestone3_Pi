@@ -1,15 +1,21 @@
 # IoTMilestone3_Pi
-These codes should run on raspberry Pi locally
+These codes should run on raspberry Pi locally．
+
+
+Differences from Milstone2:
+- clients for sensors and LEDs don't only connect to a local broker, but also a broker on cloud.
+- Added password and usernames for local clients. And we dont allow anonymous connection to the local broker anymore.
+
 
 ## Set up
 
 ### 1. Clone this repo
 ```shell
- $ git clone https://github.com/panyijing1997/IoTMilestone3_Pi.git
+ $ git clone https://gitlab.au.dk/au671364/iotmilestone3.git
 ```
 ### 2. Build the docker image for the broker
 ```shell
- $ cd IoTMilestone2_mos
+ $ cd iotmilestone3
  $ cd mqtt
  $ docker build -t mqtt .
  $ cd ..
@@ -39,6 +45,5 @@ If you run into error of '<span style="color:red">Fatal Python error: init_inter
  $ sudo apt update
  $ sudo apt install -t buster-backports libseccomp2
 ```
-
 
 
