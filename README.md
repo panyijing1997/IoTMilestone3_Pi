@@ -2,7 +2,7 @@
 These codes should run on raspberry Pi locally．
 
 
-Differences from Milstone2:
+### Differences from Milstone2:
 - clients for sensors and LEDs don't only connect to a local broker, but also a broker on cloud.
 - Added password and usernames for local clients. And we dont allow anonymous connection to the local broker anymore.
 
