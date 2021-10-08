@@ -1,8 +1,8 @@
 # IoTMilestone3_Pi
-- These codes should run on raspberry Pi locally．For codes running on the cloud, and the link please check the branch **"cloud"**. For cloud version of our system, please visit <http://dogecatedogecate.twilightparadox.com/> . But this domain seems to be blocked by eduroam, so if you are at the campus you can use mobile data to visit, or just visit <http://milestone3v3.westeurope.azurecontainer.io>.
+- These codes should run on raspberry Pi locally．For codes running on the cloud, please check the branch **"cloud"**. For cloud component of our system, please visit <http://dogecatedogecate.twilightparadox.com/> . But this domain seems to be blocked by eduroam, so if you are at the campus you can use mobile data to visit, or just visit <http://milestone3v3.westeurope.azurecontainer.io>.
 
 
-- Differences from Milstone2:
+- For the codes on RPi, differences from Milstone2:
   - clients for sensors and LEDs don't only connect to a local broker, but also a broker on cloud.
   - Added password and usernames for local clients. And we dont allow anonymous connection to the local broker anymore.
 
