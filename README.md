@@ -2,10 +2,12 @@
 These codes should run on raspberry Pi locally．
 
 
-### Differences from Milstone2:
-- clients for sensors and LEDs don't only connect to a local broker, but also a broker on cloud.
-- Added password and usernames for local clients. And we dont allow anonymous connection to the local broker anymore.
+- Differences from Milstone2:
+  - clients for sensors and LEDs don't only connect to a local broker, but also a broker on cloud.
+  - Added password and usernames for local clients. And we dont allow anonymous connection to the local broker anymore.
 
+
+**note:** Our system doesn't distinguish diffrent RPis, and webpages can show current sensor values for only one RPi at the same time, so we will not keep our RPi running when you test your RPi :) But the data from your RPi can still be written in our cloud database.
 
 ## Set up
 
