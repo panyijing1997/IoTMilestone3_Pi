@@ -261,7 +261,7 @@ while True:
     }
     #client.publish("queen/distance", json.dumps(templateData), retain=True)
     sensord.publish("queen/distance_store", json.dumps(templateData))
-    cloud_sensord.pulish("queen/distance_store", json.dumps(templateData))
+    cloud_sensord.publish("queen/distance_store", json.dumps(templateData))
 
     print("interval-------")
     time.sleep(10)
