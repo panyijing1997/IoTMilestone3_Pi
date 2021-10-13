@@ -98,7 +98,7 @@ def on_message_led(client, userdata, message):
 
 def on_connect_sensort(client, userdata, flags, rc):
     print(f"dht11 client Connected with result code {rc}")
-    client.subscribe("queen/dht11_check",1)
+    client.subscribe("queen/dht11_check")
 
 def on_message_sensort(client, userdata, message):
     r_msg=str(message.payload.decode("utf-8"))
@@ -126,7 +126,7 @@ def on_message_sensort(client, userdata, message):
 
 def on_connect_sensord(client, userdata, flags, rc):
     print(f"distance measure client Connected with result code {rc}")
-    client.subscribe("queen/distance_check",1)
+    client.subscribe("queen/distance_check")
 
 def on_publish_sensord(client, userdata, mid):
     print("distance data published")
@@ -219,5 +219,5 @@ cloud_sensort.loop_start()
 
 
 while True:
-    pass
+
 
