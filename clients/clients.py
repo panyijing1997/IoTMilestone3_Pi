@@ -219,5 +219,49 @@ cloud_sensort.loop_start()
 
 
 while True:
+    # periodically send temperature and humidity measured data to broker
+    dhtDevice = adafruit_dht.DHT11(board.D12, use_pulseio=False)
+    try:
+        temperature = dhtDevice.temperature
+        humidity = dhtDevice.humidity
+        if humidity is not None and temperature is not None:
+            msg = "read from the sensor successfully"
+            templateData = {
+                'temperature': temperature,
+                'humidity': humidity,
+                'msg': msg
+            }
+        sensort.publish("queen/dht11_store",json.dumps(templateData))
+        cloud_sensort.publish("queen/dht11_store", json.dumps(templateData))
+    except RuntimeError as error:
+        sensort.publish("queen/dht11_error", "read_failed")
+        cloud_sensort.publish("queen/dht11_error", "read_failed")
+        dhtDevice.exit()
 
+    except Exception as error:
+        cloud_sensort.publish("queen/dht11_error", "read_failed")
+        sensort.publish("queen/dht11_error", "read_failed")
+        dhtDevice.exit()
 
+    # periodically send distance measured data to broker
+    GPIO.output(TRIG, True)
+    time.sleep(0.00001)
+    GPIO.output(TRIG, False)
+    pulse_start = 0
+    pulse_end = 0
+    while GPIO.input(ECHO) == 0:
+        pulse_start = time.time()
+    while GPIO.input(ECHO) == 1:
+        pulse_end = time.time()
+    pulse_duration = pulse_end - pulse_start
+    distance = pulse_duration * 17150
+    distance = round(distance, 2)
+    templateData = {
+        'dist': distance,
+    }
+    #client.publish("queen/distance", json.dumps(templateData), retain=True)
+    sensord.publish("queen/distance_store", json.dumps(templateData),retain=True)
+    cloud_sensord.pulish("queen/distance_store", json.dumps(templateData),retain=True)
+
+    print("interval-------")
+    time.sleep(10)
