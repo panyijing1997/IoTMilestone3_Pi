@@ -231,16 +231,19 @@ while True:
                 'humidity': humidity,
                 'msg': msg
             }
+        print("temp read successed (perioddical reading)")
         sensort.publish("queen/dht11_store",json.dumps(templateData))
         cloud_sensort.publish("queen/dht11_store", json.dumps(templateData))
     except RuntimeError as error:
         sensort.publish("queen/dht11_error", "read_failed")
         cloud_sensort.publish("queen/dht11_error", "read_failed")
+        print("temp read failed (perioddical reading)")
         dhtDevice.exit()
 
     except Exception as error:
         cloud_sensort.publish("queen/dht11_error", "read_failed")
         sensort.publish("queen/dht11_error", "read_failed")
+        print("temp read failed (perioddical reading)")
         dhtDevice.exit()
 
     # periodically send distance measured data to broker
