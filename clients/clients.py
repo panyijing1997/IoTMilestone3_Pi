@@ -219,6 +219,7 @@ cloud_sensort.loop_start()
 
 
 while True:
+    print("interval-------")
     # periodically send temperature and humidity measured data to broker
     dhtDevice = adafruit_dht.DHT11(board.D12, use_pulseio=False)
     try:
@@ -266,5 +267,5 @@ while True:
     sensord.publish("queen/distance_store", json.dumps(templateData))
     cloud_sensord.publish("queen/distance_store", json.dumps(templateData))
 
-    print("interval-------")
+
     time.sleep(10)
