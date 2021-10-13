@@ -60,7 +60,7 @@ def on_message_led(client, userdata, message):
             'led_red': ledState_red,
             'led_green': ledState_green,
         }
-        client.publish("queen/led/state", json.dumps(ledState),retain=True)
+        client.publish("queen/led/state", json.dumps(ledState))
     elif message.topic == "queen/led/action":
         msg=str(message.payload.decode("utf-8"))
         msg=json.loads(msg)
@@ -115,13 +115,13 @@ def on_message_sensort(client, userdata, message):
                 'humidity': humidity,
                 'msg': msg
             }
-        client.publish("queen/dht11_store",json.dumps(templateData),retain=True)
+        client.publish("queen/dht11_store",json.dumps(templateData))
     except RuntimeError as error:
-        client.publish("queen/dht11_error", "read_failed",retain=True)
+        client.publish("queen/dht11_error", "read_failed")
         dhtDevice.exit()
 
     except Exception as error:
-        client.publish("queen/dht11_error", "read_failed",retain=True)
+        client.publish("queen/dht11_error", "read_failed")
         dhtDevice.exit()
 
 def on_connect_sensord(client, userdata, flags, rc):
@@ -151,7 +151,7 @@ def on_message_sensord(client, userdata, message):
         'dist': distance,
     }
     #client.publish("queen/distance", json.dumps(templateData), retain=True)
-    client.publish("queen/distance_store", json.dumps(templateData),retain=True)
+    client.publish("queen/distance_store", json.dumps(templateData))
     print(templateData)
 
 
@@ -260,8 +260,8 @@ while True:
         'dist': distance,
     }
     #client.publish("queen/distance", json.dumps(templateData), retain=True)
-    sensord.publish("queen/distance_store", json.dumps(templateData),retain=True)
-    cloud_sensord.pulish("queen/distance_store", json.dumps(templateData),retain=True)
+    sensord.publish("queen/distance_store", json.dumps(templateData))
+    cloud_sensord.pulish("queen/distance_store", json.dumps(templateData))
 
     print("interval-------")
     time.sleep(10)
