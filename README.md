@@ -11,7 +11,7 @@ You can see historical records for around every 10 seconds for both temperatue&h
 
 While we still preseve the function of mannually choose to measure the data (including showing on the webpage and storing in historical records)
 
-The link to the cloud components: http://milestone3v3.westeurope.azurecontainer.io.
+The link to the cloud components: http://milestone3v3.westeurope.azurecontainer.io [expired]
 
 Codes for cloud components are in branch `cloud`.
 ## Set up
