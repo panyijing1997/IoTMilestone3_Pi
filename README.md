@@ -1,4 +1,4 @@
-# IoTMilestone3
+# IoTMilestone3 (Codes in RPi)
 These codes should run on Pi locally.
 
 **Note:** Our system doesn't distinguish different RPis, and webpages can show current sensor values for only one RPi at the same time, so we **will not** keep our RPi running when you test your RPi :) But the data from your RPi can still be written in our cloud database. 
