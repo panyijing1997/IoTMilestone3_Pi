@@ -13,12 +13,12 @@ While we still preseve the function of mannually choose to measure the data (inc
 
 The link to the cloud components: http://milestone3v3.westeurope.azurecontainer.io [expired]
 
-Codes for cloud components are in branch `cloud`.
+Codes for cloud components: https://github.com/panyijing1997/IoTMilestone3_cloud
 ## Set up
 ### 1. Clone this repo and go to the root
 ```shell
- $ git clone https://gitlab.au.dk/au671364/iotmilestone3.git
- $ cd iotmilestone3
+ $ git https://github.com/panyijing1997/IoTMilestone3_Pi.git
+ $ cd IoTMilestone3_Pi
 ```
 ### 2. Build the docker image for broker
 ```shell
