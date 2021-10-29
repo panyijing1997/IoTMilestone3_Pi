@@ -15,6 +15,10 @@ The link to the cloud components: http://milestone3v3.westeurope.azurecontainer.
 
 Codes for cloud components: https://github.com/panyijing1997/IoTMilestone3_cloud
 ## Set up
+
+Connection of sensors and RPi:
+https://github.com/panyijing1997/IoTCourseMilestone1
+
 ### 1. Clone this repo and go to the root
 ```shell
  $ git https://github.com/panyijing1997/IoTMilestone3_Pi.git
